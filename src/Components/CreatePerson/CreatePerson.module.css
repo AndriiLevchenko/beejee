@@ -1,0 +1,38 @@
+
+.PersonWide{
+  display: block;
+  position: absolute;
+  top: 20px;
+  width: 95%;
+  height: 95%;  
+}
+.Person {
+  width: 70%;
+  min-height: 570px;
+  position: absolute;
+  top: 9px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 19px 29px;
+  background-color: #e0f2f7;
+  border: 3px solid cyan;
+  border-radius: 29px;
+  color: black;
+}
+.Person h4{
+  font-size: 19px;
+  text-align: center;
+  color: black;
+}
+.Person__Button{
+  margin-top: 44px;
+  padding: 20px;
+  display:block;
+  margin: auto;
+}
+.Person__Button button{
+  width: 60%;
+  height: 40px;
+  border-radius: 5px;
+}

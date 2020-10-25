@@ -1,0 +1,45 @@
+.Input{
+	margin-bottom: 7px;
+}
+.Input input{
+	display: block;
+	box-sizing: border-box;
+	border: 1px solid #bebebe;
+	padding: 4px;
+	width: 100%;
+	outline: none;
+	transition: all 300ms ease-in-out;
+}
+
+.Input label{
+	margin-bottom: 2px;
+	padding: 0;
+	display: block;
+	font-weight: bold;
+	text-align: left;
+	color: black;
+}
+
+
+.Input span{
+	display: block;
+	text-align: left;
+	margin-left: 0;
+    color: red;
+    font-family: tahoma, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+}
+.Input.invalid label{
+	margin-bottom: 2px;
+	padding: 0;
+	display: block;
+	font-weight: bold;
+	text-align: left;
+	color: red;
+}
+.invalid {
+	
+	color: red;
+}
+

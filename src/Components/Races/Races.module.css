@@ -1,0 +1,80 @@
+.Race {
+  width: 90%;
+  height: 330px;
+  padding: 10px;
+  color: blue;
+  border: 2px solid #fff;
+  margin-top: 116px;
+  border: 8px solid cyan;
+}
+.Race h1 {
+  font-size: 22px;
+  margin: 4px auto;
+}
+.Race form{
+	background: #eee;
+	border-radius: 6px;
+	padding: 15px;
+}
+
+.RacePerson__Card{
+    width: 190px;
+    height: 182px;
+    padding-top: 1px;
+    margin-left: 9px;
+    overflow: hidden;
+    float: left;
+}
+.RacePerson__Picture{
+    width: 171px;
+    margin-top: 2px;
+    margin-left: 4px;
+}
+
+.RacePerson__Text{
+    width: 190px;
+    padding-left: 2px;
+    padding-top: 0px;
+    line-height: 22px;
+    float: left;
+}
+.RacePerson__Text h4{
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-align: center;
+    line-height: 23px;
+    color: #878787;
+}
+.RacePerson__Text__p{
+    margin-top: 12px;
+}
+.RacePerson__position{
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 10px;
+    letter-spacing: 0.2px;
+    line-height: 14px;
+    text-align: center;
+    color: #878787;
+}
+.Person__Button{
+  margin-top: 44px;
+  padding: 20px;
+  display:block;
+  margin: auto;
+}
+.Person__Button button{
+  width: 98%;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+
+
+
+

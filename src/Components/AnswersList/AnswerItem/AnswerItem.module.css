@@ -1,0 +1,39 @@
+
+.AnswerItem{
+  position:relative;
+  width: 95%;
+  height: 48px;
+  background-color: #e0f2f7;
+  border: 1px solid cyan;
+  border-radius: 8px;
+  margin: 6px;
+  padding: 4px; 
+  color: black;
+  cursor: pointer;
+ }
+.AnswerItem:hover{
+  background-color: #bde0ff;
+  transition: background .3s ease-in-out;
+}
+.AnswerItem label{
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  padding: 13px 0 12px 13px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.AnswerItem.success{
+  background: rgba(161, 240, 69, .7); 
+}
+.AnswerItem.error{
+  background: rgba(240, 87, 108, .7); 
+}
+@media screen and (max-width: 700px) {
+ 
+  .AnswerItem{ 
+    height: 32px; 
+    margin: 2px
+  }
+}
+
