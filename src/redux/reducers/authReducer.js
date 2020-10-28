@@ -74,8 +74,8 @@ export function auth(login, password, isLogin){
 				password,
 				returnSecureToken: true
 			}
-		let url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBRj1R0UEHzbzdDaOOQIhjqWUvDsusN4Mo';
-		if(isLogin){url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBRj1R0UEHzbzdDaOOQIhjqWUvDsusN4Mo'}
+		let url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBRj1R0UEHzbzdDaOOQIhjqWUvDsus*';
+		if(isLogin){url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBRj1R0UEHzbzdDaOOQIhjqWUvDsus*'}
 		const response = await axios.post(url, authData);
 		const data=response.data;
 		console.log(data);
