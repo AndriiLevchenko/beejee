@@ -18,9 +18,10 @@
 }
 
 .RacePersonsList li {
-   position:relative;
-  width: 95%;
-  height: 38px;
+  
+  position:relative;
+  width: 98%;
+  height: 34px;
   background-color: #e0f2f7;
   border: 1px solid cyan;
   border-radius: 8px;
@@ -31,21 +32,40 @@
 }
 
 .RacePersonsList li a {
+  display: flex;
+  justify-content: space-between;
     text-decoration: none;
-   display: block;
 }
 
 .RacePersonsList li:hover {
    background-color: #bde0ff;
   transition: background .3s ease-in-out;
 }
+.taskText{
+  width: 42%;
+  font-size: 11px;
+  text-align: left;
+}
+.performer{
+  width: 22%;
+  text-align: left;
+}
+.email{
+  font-size: 11px;
+  color: blue;
+  
+}
+.status{
+  width: 12%;
+}
 .Tests{
 
-    width: 77%;
+    width: 91%;
     margin: 6px auto;
     padding: 6px;
     background-color: #f3ffcf;
     border-radius: 6px;
 }
+
 
 

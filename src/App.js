@@ -3,12 +3,12 @@ import classes from './App.module.css';
 import Layout from './Components/Layout/Layout';
 import Auth from './Components/Auth/Auth';
 import LogOut from './Components/Auth/LogOut';
-import Races from './Components/Races/Races';
-import EditPerson from './Components/CreatePerson/EditPerson';
+import Tasks from './Components/Tasks/Tasks';
+import EditTask from './Components/CreateTask/EditTask';
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {autoLogin} from './redux/reducers/authReducer';
-import {fetchPersons} from './redux/reducers/personsReducer';
+import {fetchTasks} from './redux/reducers/tasksReducer';
 
 
 class App extends Component {
@@ -18,19 +18,22 @@ class App extends Component {
       render(){
         let routes=(
             <Switch>
+                <Route path='/tasks' component={Tasks} />
                 <Route path='/auth' component={Auth} />
-               
-                <Route path='/' exact component={Auth} />
+                <Route path='/person:id' component={EditTask} />
+              
+                <Route path='/' exact component={Tasks} />
                 <Redirect to='/' />
             </Switch>
         );
         if(this.props.isAuthenticated){
             routes=(
             <Switch>
-                <Route path='/races' component={Races} />
-                 <Route path='/person:id' component={EditPerson} />
+                <Route path='/tasks' component={Tasks} />
+                <Route path='/tasks:id' component={EditTask} />
+                
+                <Route path='/' exact component={Tasks} />
                 <Route path='/logout' component={LogOut} />
-                <Route path='/' exact component={Races} />
                 <Redirect to='/' />
             </Switch>
         );
@@ -57,7 +60,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
   return{
     autoLogin: ()=>dispatch(autoLogin()),
-    fetchPersons: ()=>dispatch(fetchPersons())
+    fetchTasks: ()=>dispatch(fetchTasks())
   }
 }
 

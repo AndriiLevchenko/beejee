@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './MenuToggle.module.css';
-//import Button from './../../UI/Button/Button';
 
 
 const MenuToggle =(props)=> {
@@ -22,7 +21,5 @@ const MenuToggle =(props)=> {
       />
     )
   }
-
-
 
 export default MenuToggle;

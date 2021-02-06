@@ -1,17 +1,16 @@
-.Race {
-  width: 90%;
-  height: 330px;
+.Task {
+  width: 98%;
   padding: 10px;
   color: blue;
   border: 2px solid #fff;
-  margin-top: 116px;
+  margin-top: 6px;
   border: 8px solid cyan;
 }
-.Race h1 {
+.Task h1 {
   font-size: 22px;
   margin: 4px auto;
 }
-.Race form{
+.Task form{
 	background: #eee;
 	border-radius: 6px;
 	padding: 15px;

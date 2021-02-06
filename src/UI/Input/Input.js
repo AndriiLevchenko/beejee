@@ -28,6 +28,7 @@ const Input =(props)=>{
 				valid={props.valid}
 				value={props.value}
 				onChange={props.onChange}
+				disabled={props.disabled}
 			/>
 			{isInvalid(props)  ? <span> {props.errorMessage || 'Введіть вірний параметр'} </span>  : null  }
 		</div>

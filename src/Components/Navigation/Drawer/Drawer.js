@@ -30,7 +30,7 @@ class Drawer extends Component {
        // {to:'/', label:'Список', exact:true}
       ];
       if(this.props.isAuthenticated){
-          llinks.push( {to:'/races', label:'Races', exact:false});
+          llinks.push( {to:'/tasks', label:'Tasks', exact:false});
           llinks.push( {to:'/logout', label:'Exit', exact:false});
       } else {
           llinks.push({to:'/auth', label:'Авторизація', exact:false});
