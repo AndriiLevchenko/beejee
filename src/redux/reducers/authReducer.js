@@ -2,7 +2,6 @@
 import axios from  'axios';
 
 const AUTH_SUCCESS='AUTH_SUCCESS';
-const AUTO_LOG_OUT='AUTO_LOG_OUT';
 const AUTH_LOG_OUT='AUTH_LOG_OUT';
 
 const initialState={

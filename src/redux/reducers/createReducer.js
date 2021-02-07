@@ -45,14 +45,12 @@ export function openCreateTask(task){
 }
 
 export function resetPersonCreation(){
-	window.location.reload()
+	 window.history.back();
 }
 
 export function createTask(newPerson){
 	return  (dispatch)=>{
 		axios.post("https://abzagencytest.firebaseio.com/tasks.json", newPerson).then(response=>{
-			console.log("post response = ", response);
-			dispatch(resetPersonCreation());
 			alert("New Task " + newPerson.name + " was created");
 			dispatch(resetPersonCreation());
 		}).catch(error=>console.log("error = ", error));
@@ -61,11 +59,8 @@ export function createTask(newPerson){
 }
 export function editTask(editedPerson){
 	const idPerson=editedPerson.id;
-	console.log(editedPerson, idPerson);
 	return  (dispatch)=>{
 		axios.put("https://abzagencytest.firebaseio.com/tasks/" + idPerson + ".json", editedPerson).then(response=>{
-			console.log("post response = ", response);
-			dispatch(resetPersonCreation());
 			alert("New Task " + editedPerson.name + " was edited");
 			dispatch(resetPersonCreation());
 		}).catch(error=>console.log("error = ", error));
@@ -87,7 +82,6 @@ export function editTask(editedPerson){
 export function deleteTask(deletedPersonId){
 	return  (dispatch)=>{
 		axios.delete("https://abzagencytest.firebaseio.com/tasks/" + deletedPersonId +  ".json").then(response=>{
-			console.log("post response = ", response);
 			alert("New Task  was deleted");
 			dispatch(resetPersonCreation());
 		}).catch(error=>console.log("error = ", error));

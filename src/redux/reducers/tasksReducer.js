@@ -5,8 +5,12 @@ const FETCH_TASKS_START='FETCH_TASKS_START';
 const FETCH_TASKS_SUCCESS='FETCH_TASKS_SUCCESS';
 const FETCH_TASKS_ERROR='FETCH_TASKS_ERROR';
 const FETCH_TASK_SUCCESS='FETCH_TASK_SUCCESS';
-const PAGE_UP='PAGE_UP';
-const PAGE_DOWN='PAGE_DOWN';
+
+const SORT_TASKS ='SORT_TASKS';
+
+
+
+
 
 const initialState={
 	tasks: [], 
@@ -21,61 +25,36 @@ const initialState={
 
 export default function  tasksReducer(state=initialState, action){
 	switch(action.type){
-		case FETCH_TASKS_START:
+		case 'FETCH_TASKS_START':
 			return {
 				...state,
 				loading: true
 			}
-		case FETCH_TASKS_SUCCESS:
+		case 'FETCH_TASKS_SUCCESS':
 			return {
 				...state,
 				loading: false,
 				tasks: action.tasks
 				//theRest: action.tasks/state.pageLength
 			}
-		case FETCH_TASK_SUCCESS:
+		case 'FETCH_TASK_SUCCESS':
 			return {
 				...state,
 				loading: false,
 				quiz: action.quiz
 			}
-		case FETCH_TASKS_ERROR:
+		case 'FETCH_TASKS_ERROR':
 			return {
 				...state,
 				loading: false,
 				error: action.error
 			}
 
-		case PAGE_UP:
-			if(state.pageNumber <= 1){
-				return {
+		case 'SORT_TASKS':
+				return{
 					...state,
-					
+					tasks: action.newTasks
 				}
-			} else {
-				return {
-					...state,
-					pageNumber: state.pageNumber - 1,
-					firstTask: state.firstTask- 3,
-					lastTask: state.lastTask - 3
-				}
-			}
-		case PAGE_DOWN:	
-			if(state.pageNumber >= (state.tasks.length)/3){
-				return {
-					...state,
-					firstTask: state.firstTask,
-					lastTask: state.lastTask
-				}
-			} else {
-				return {
-					...state,
-					pageNumber: state.pageNumber + 1,
-					firstTask: state.firstTask + 3,
-					lastTask: state.lastTask + 3
-				}
-			}
-		
 		default:
 		return state
 	}
@@ -141,11 +120,38 @@ export function fetchTasksError(error){
 			error
 		   }
 }
-export function pageUp(){
-	return {type: PAGE_UP}
+
+export const sortTasks=(sortParam)=>(dispatch, getState)=>{
+	console.log(sortParam);
+	let tasks = getState().tasksReducer.tasks;
+	let newTasks;
+	switch(sortParam){
+		case "TaskText":
+			newTasks = tasks.sort((a, b)=>{ if( a.taskText > b.taskText) {return -1} else { return 1}});
+			console.log("newTasks = ", newTasks);
+			dispatch ({type: SORT_TASKS,
+					newTasks
+			});
+			break;
+		case "Name":
+			newTasks = tasks.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});
+			console.log("newTasks = ", newTasks);
+			dispatch({type: SORT_TASKS,
+					newTasks
+			});
+			break;
+		case "Status":
+			newTasks = tasks.sort((a, b)=>{ if( a.status > b.status) {return -1} else { return 1}});
+			console.log("newTasks = ", newTasks);
+			dispatch({type: SORT_TASKS,
+					newTasks
+			});
+			break;
+		default:
+			dispatch({type: SORT_TASKS,
+					newTasks
+			});
+	}		
 }
-export function pageDown(tasks){
-	return {type: PAGE_DOWN,
-		   }
-}
+
 

@@ -20,8 +20,7 @@ class App extends Component {
             <Switch>
                 <Route path='/tasks' component={Tasks} />
                 <Route path='/auth' component={Auth} />
-                <Route path='/person:id' component={EditTask} />
-              
+                <Route path='/tasks:id' component={EditTask} />
                 <Route path='/' exact component={Tasks} />
                 <Redirect to='/' />
             </Switch>
@@ -59,8 +58,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return{
-    autoLogin: ()=>dispatch(autoLogin()),
-    fetchTasks: ()=>dispatch(fetchTasks())
+    autoLogin: ()=>dispatch(autoLogin())
   }
 }
 

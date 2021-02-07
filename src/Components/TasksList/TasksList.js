@@ -3,25 +3,22 @@ import classes from './TasksList.module.css';
 import {NavLink} from 'react-router-dom';
 import Loader from './../../UI/Loader/Loader';
 import {connect} from 'react-redux';
-import {fetchTasks} from './../../redux/reducers/tasksReducer';
+import {fetchTasks, sortTasks} from './../../redux/reducers/tasksReducer';
 import {functionEmail} from './../../utils/functionEmail';
-//import {statusToggle} from './../../redux/reducers/createReducer';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
-const RacePersonsList =(props)=> {
+const TasksList =(props)=> {
 	console.log("props =", props);
-		const statusToggle=(event)=>{
-			event.stopPropagation();
-			console.log("change status", event.target.id);
-			props.statusToggle(event.target.id);
+		const sortTasks=(sortParam)=>{
+			props.sortTasks(sortParam);
 		}
+		const tasksForMap=props.tasks;
 		const  	renderPersons=()=>{
-	  		return props.tasks.map(task=>{
-		  		console.log("task = ", task);
+	  		return tasksForMap && tasksForMap.map((task, index)=>{
 		  			return(
 		  					<li
-		  						key={task.id}
+		  						key={task.id} idOrder={index}
 		  					>
 		  						<NavLink to={'/tasks' + task.id }>
  									<span className={classes.taskText}>{task.taskText}</span>  
@@ -39,8 +36,14 @@ const RacePersonsList =(props)=> {
 
 		console.log(props)
 	    return (
-	      	<div className={classes.RacePersonsList}>
+	      	<div className={classes.TaskPersonsList}>
 	      		<div className={classes.Tests}>	
+	      						<div className={classes.Header}>
+	      							<span className={classes.taskText} onClick =  {()=>sortTasks("TaskText")}> Task     </span>  
+ 									<span className={classes.performer} onClick = {()=>sortTasks("Name")}>         Performer</span>  
+ 									<span className={classes.email} onClick =     {()=>sortTasks("Name")}>        E-mail   </span>   
+ 									<span className={classes.status} onClick =    {()=>sortTasks("Status")}>     Status   </span>
+ 								</div>
 					{ props.loading && props.tasks.length !== 0
 						? <Loader />
 						:	<ul>
@@ -50,7 +53,6 @@ const RacePersonsList =(props)=> {
 				</div>
 	      	</div>
 	    )
-	
 }
 
 function mapStateToProps(state){
@@ -59,12 +61,12 @@ function mapStateToProps(state){
 		loading: state.tasksReducer.loading
 	}
 }
-
 function mapDispatchToProps(dispatch){
 	return{
-		fetchTasks: ()=>dispatch(fetchTasks())
+		fetchTasks: ()=>dispatch(fetchTasks()),
+		sortTasks: (sortParam)=>dispatch(sortTasks(sortParam))
 		
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RacePersonsList);
+export default connect(mapStateToProps, mapDispatchToProps)(TasksList);

@@ -6,15 +6,11 @@ import {connect} from 'react-redux';
 import {createTask} from './../../redux/reducers/createReducer';
 import Select from './../../UI/Select/Select';
 
-
-
-
 class CreateTask extends Component{
 	state={
 		taskText: " ",
 		Performer: "Aslan"
 	}
-
 	changeHandler =(value)=>{
 		this.setState({
 			taskText: value,
@@ -27,7 +23,6 @@ class CreateTask extends Component{
 			Performer: event.target.value
 		});
 	}
-
 	createTask = (event)=>{
 		console.log("event = ", event);
 		const newTask={
@@ -47,7 +42,7 @@ class CreateTask extends Component{
 	render(){
 		 	console.log( this.props);
 	    	return(		
-				<div className={classes.PersonWide}>
+				<div className={classes.TaskWide}>
 					<div className={classes.Person}>
 					 	<h4>Create new Task</h4>						 
 					 	<Input 		label="Task" 
@@ -68,7 +63,7 @@ class CreateTask extends Component{
 							]}
 						/>
 					 	
-					 	<div className={classes.Person__Button}>
+					 	<div className={classes.Task__Button}>
 					 		<Button type='button' onClick={(event)=>this.createTask(event)} value="CREATE NEW TASK" />						 	
 						</div>
 					</div>
@@ -83,7 +78,6 @@ function mapStateToProps(state){
 		tasks: state.tasksReducer.tasks
 	}
 }
-
 function mapDispatchToProps(dispatch){
 	return{
 		createTask: newTask=>dispatch(createTask(newTask))

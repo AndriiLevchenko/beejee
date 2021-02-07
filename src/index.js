@@ -18,7 +18,7 @@ const composeEnhancers =
     }) : compose;
 
 const store=createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
-
+window.store=store;
 const app=(
 	<Provider store={store} >
 		<React.StrictMode>

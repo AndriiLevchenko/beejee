@@ -26,9 +26,7 @@ class Drawer extends Component {
           })
         }
     render(){
-       const llinks=[
-       // {to:'/', label:'Список', exact:true}
-      ];
+       const llinks=[ ];
       if(this.props.isAuthenticated){
           llinks.push( {to:'/tasks', label:'Tasks', exact:false});
           llinks.push( {to:'/logout', label:'Exit', exact:false});
@@ -51,6 +49,5 @@ class Drawer extends Component {
         )
   }
 }
-
 
 export default Drawer;

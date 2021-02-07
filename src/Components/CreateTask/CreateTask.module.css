@@ -1,12 +1,12 @@
 
-.PersonWide{
+.TaskWide{
   display: block;
   position: absolute;
   top: 20px;
   width: 95%;
   height: 95%;  
 }
-.Person {
+.Task {
   width: 70%;
   min-height: 570px;
   position: absolute;
@@ -20,18 +20,18 @@
   border-radius: 29px;
   color: black;
 }
-.Person h4{
+.Task h4{
   font-size: 19px;
   text-align: center;
   color: black;
 }
-.Person__Button{
+.Task__Button{
   margin-top: 44px;
   padding: 20px;
   display:block;
   margin: auto;
 }
-.Person__Button button{
+.Task__Button button{
   width: 60%;
   height: 40px;
   border-radius: 5px;
