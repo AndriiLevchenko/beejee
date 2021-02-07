@@ -8,7 +8,6 @@ import EditTask from './Components/CreateTask/EditTask';
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {autoLogin} from './redux/reducers/authReducer';
-import {fetchTasks} from './redux/reducers/tasksReducer';
 
 
 class App extends Component {

@@ -7,10 +7,7 @@ const FETCH_TASKS_ERROR='FETCH_TASKS_ERROR';
 const FETCH_TASK_SUCCESS='FETCH_TASK_SUCCESS';
 
 const SORT_TASKS ='SORT_TASKS';
-
-
-
-
+const SORT_PARAM='SORT_PARAM';
 
 const initialState={
 	tasks: [], 
@@ -20,7 +17,8 @@ const initialState={
 	pageNumber: 1,
 	firstTask: 0,
 	lastTask: 2,
-	theRest: 0
+	theRest: 0,
+	sortParam: "Name"
 };
 
 export default function  tasksReducer(state=initialState, action){
@@ -38,10 +36,11 @@ export default function  tasksReducer(state=initialState, action){
 				//theRest: action.tasks/state.pageLength
 			}
 		case 'FETCH_TASK_SUCCESS':
+		console.log("newTasks = ", action.newTasks);
 			return {
 				...state,
 				loading: false,
-				quiz: action.quiz
+				quiz: action.task
 			}
 		case 'FETCH_TASKS_ERROR':
 			return {
@@ -55,9 +54,18 @@ export default function  tasksReducer(state=initialState, action){
 					...state,
 					tasks: action.newTasks
 				}
+		case 'SORT_PARAM':
+				return{
+					...state, 
+					sortParam: action.sortParam
+				}
 		default:
 		return state
 	}
+}
+
+export function resetPersonCreation(){
+	 window.location.reload();
 }
 
 export function fetchTasks(){
@@ -80,6 +88,7 @@ export function fetchTasks(){
 	  			});
 	  		
 	  	dispatch(fetchTasksSuccess(tasks));
+
 	  		} catch(error) {
 	  			dispatch(fetchTasksError(error));
 	  		}
@@ -109,10 +118,10 @@ export function fetchTasksSuccess(tasks){
 			tasks
 		   }
 }
-export function fetchTaskSuccess(quiz){
-	console.log(quiz);
+export function fetchTaskSuccess(task){
+	console.log(task);
 	return {type: FETCH_TASK_SUCCESS,
-			quiz
+			task
 		   }
 }
 export function fetchTasksError(error){
@@ -120,32 +129,31 @@ export function fetchTasksError(error){
 			error
 		   }
 }
+export function sortParamFunction(sortParam){
+	return {type: SORT_PARAM,
+			sortParam
+		   }
+}
 
 export const sortTasks=(sortParam)=>(dispatch, getState)=>{
-	console.log(sortParam);
 	let tasks = getState().tasksReducer.tasks;
+	console.log("tasks = ", tasks);
 	let newTasks;
 	switch(sortParam){
 		case "TaskText":
 			newTasks = tasks.sort((a, b)=>{ if( a.taskText > b.taskText) {return -1} else { return 1}});
-			console.log("newTasks = ", newTasks);
-			dispatch ({type: SORT_TASKS,
-					newTasks
-			});
+				alert("sort by parameter  " + sortParam);
+			dispatch(sortParamFunction(sortParam));
 			break;
 		case "Name":
 			newTasks = tasks.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});
-			console.log("newTasks = ", newTasks);
-			dispatch({type: SORT_TASKS,
-					newTasks
-			});
+				alert("sort by parameter  " + sortParam);
+			dispatch(sortParamFunction(sortParam));
 			break;
 		case "Status":
 			newTasks = tasks.sort((a, b)=>{ if( a.status > b.status) {return -1} else { return 1}});
-			console.log("newTasks = ", newTasks);
-			dispatch({type: SORT_TASKS,
-					newTasks
-			});
+				alert("sort by parameter  " + sortParam);
+			dispatch(sortParamFunction(sortParam));
 			break;
 		default:
 			dispatch({type: SORT_TASKS,

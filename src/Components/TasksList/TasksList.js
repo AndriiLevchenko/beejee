@@ -13,12 +13,17 @@ const TasksList =(props)=> {
 		const sortTasks=(sortParam)=>{
 			props.sortTasks(sortParam);
 		}
-		const tasksForMap=props.tasks;
+		const tasks=props.tasks;
+		let tasksForMap = tasks;
+		if(props.sortParam === "taskText"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.taskText > b.taskText) {return -1} else { return 1}});}
+		if(props.sortParam === "Name"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});}
+		if(props.sortParam === "Email"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});}
+		if(props.sortParam === "Name"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.status > b.status) {return -1} else { return 1}});}
 		const  	renderPersons=()=>{
 	  		return tasksForMap && tasksForMap.map((task, index)=>{
 		  			return(
 		  					<li
-		  						key={task.id} idOrder={index}
+		  						key={task.id} 
 		  					>
 		  						<NavLink to={'/tasks' + task.id }>
  									<span className={classes.taskText}>{task.taskText}</span>  
@@ -37,12 +42,13 @@ const TasksList =(props)=> {
 		console.log(props)
 	    return (
 	      	<div className={classes.TaskPersonsList}>
+	      	{props.sortParam}
 	      		<div className={classes.Tests}>	
 	      						<div className={classes.Header}>
-	      							<span className={classes.taskText} onClick =  {()=>sortTasks("TaskText")}> Task     </span>  
- 									<span className={classes.performer} onClick = {()=>sortTasks("Name")}>         Performer</span>  
- 									<span className={classes.email} onClick =     {()=>sortTasks("Name")}>        E-mail   </span>   
- 									<span className={classes.status} onClick =    {()=>sortTasks("Status")}>     Status   </span>
+	      							<button className={classes.taskText} onClick =  {()=>sortTasks("TaskText")}> Task     </button>  
+ 									<button className={classes.performer} onClick = {()=>sortTasks("Name")}>         Performer</button>  
+ 									<button className={classes.email} onClick =     {()=>sortTasks("Name")}>        E-mail   </button>   
+ 									<button className={classes.status} onClick =    {()=>sortTasks("Status")}>     Status   </button>
  								</div>
 					{ props.loading && props.tasks.length !== 0
 						? <Loader />
@@ -58,7 +64,8 @@ const TasksList =(props)=> {
 function mapStateToProps(state){
 	return{
 		tasks: state.tasksReducer.tasks,
-		loading: state.tasksReducer.loading
+		loading: state.tasksReducer.loading,
+		sortParam: state.tasksReducer.sortParam
 	}
 }
 function mapDispatchToProps(dispatch){

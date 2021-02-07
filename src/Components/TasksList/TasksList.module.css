@@ -43,17 +43,20 @@
   font-size: 11px;
   text-align: left;
 }
-.Header span{
+.Header button{
+  height: 35px;
   padding: 0 6px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
-  border: 6px solid transparent;
+  border: 1px solid cyan;
   border-radius: 6px;
 }
-.Header span:hover{
-  font-size: 22px;
+.Header button:hover{
+  color: blue;
+  font-size: 20px;
   font-weight: 500;
-  border-color: #e0f2f7;;
+  border-color: #e0f2f7;
+  background-color: #e0f2f7;
 }
 
 .performer{
