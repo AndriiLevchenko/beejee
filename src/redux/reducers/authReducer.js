@@ -10,12 +10,12 @@ const initialState={
 
 export default function  authReducer(state=initialState, action){
 	switch(action.type){
-		case AUTH_SUCCESS:
+		case 'AUTH_SUCCESS':
 			return{
 				...state,
 				token: action.token
 			}
-		case AUTH_LOG_OUT:
+		case 'AUTH_LOG_OUT':
 			return{
 				...state,
 				token: null

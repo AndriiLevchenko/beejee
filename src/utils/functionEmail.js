@@ -1,5 +1,4 @@
 export const functionEmail =(name) =>{
-	console.log("name = ", name);  
 	
 	switch (name){
 		case "Aslan":

@@ -11,27 +11,23 @@ class CreateTask extends Component{
 		taskText: " ",
 		Performer: "Aslan"
 	}
-	changeHandler =(value)=>{
+	changeHandler =(value)=>{		
 		this.setState({
 			taskText: value,
 		});
-		console.log(this.state.taskText);
 	}
 	selectChangeHandler =(event)=>{
-		console.log("event = ", event.target.value);
 		this.setState({
 			Performer: event.target.value
 		});
 	}
 	createTask = (event)=>{
-		console.log("event = ", event);
 		const newTask={
 			taskText: this.state.taskText,
 			id: Date.now(),
 			status: false,
 			name: this.state.Performer
 		}
-		console.log("newTask = ", newTask, event);
 		this.props.createTask(newTask);
 		this.setState({
 			taskText: " ",
@@ -40,10 +36,9 @@ class CreateTask extends Component{
 	}
 
 	render(){
-		 	console.log( this.props);
 	    	return(		
 				<div className={classes.TaskWide}>
-					<div className={classes.Person}>
+					<div className={classes.Task}>
 					 	<h4>Create new Task</h4>						 
 					 	<Input 		label="Task" 
 					 				value={this.state.taskText}

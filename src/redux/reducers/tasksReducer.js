@@ -18,7 +18,7 @@ const initialState={
 	firstTask: 0,
 	lastTask: 2,
 	theRest: 0,
-	sortParam: "Name"
+	sortParam: " "
 };
 
 export default function  tasksReducer(state=initialState, action){
@@ -33,10 +33,8 @@ export default function  tasksReducer(state=initialState, action){
 				...state,
 				loading: false,
 				tasks: action.tasks
-				//theRest: action.tasks/state.pageLength
 			}
 		case 'FETCH_TASK_SUCCESS':
-		console.log("newTasks = ", action.newTasks);
 			return {
 				...state,
 				loading: false,
@@ -61,7 +59,7 @@ export default function  tasksReducer(state=initialState, action){
 				}
 		default:
 		return state
-	}
+	}						
 }
 
 export function resetPersonCreation(){
@@ -73,11 +71,8 @@ export function fetchTasks(){
 		dispatch(fetchTasksStart());
 			try{
 	  			const response = await axios.get('tasks.json'); 
-	  			console.log(response);
 	  			const tasks=[];
-
 	  			Object.values(response.data).forEach((key, index)=>{
-	  				console.log(Object.keys(response.data)[index]);
 	  				tasks.push({
 	  					email: key.email,
 	  					name: key.name,
@@ -95,7 +90,6 @@ export function fetchTasks(){
 	}
 }
 export function fetchTaskById(personId){
-	console.log(personId);
 	return async dispatch=>{
 		dispatch(fetchTasksStart());
 			try{
@@ -119,7 +113,6 @@ export function fetchTasksSuccess(tasks){
 		   }
 }
 export function fetchTaskSuccess(task){
-	console.log(task);
 	return {type: FETCH_TASK_SUCCESS,
 			task
 		   }

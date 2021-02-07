@@ -9,16 +9,15 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 const TasksList =(props)=> {
-	console.log("props =", props);
 		const sortTasks=(sortParam)=>{
 			props.sortTasks(sortParam);
 		}
 		const tasks=props.tasks;
 		let tasksForMap = tasks;
-		if(props.sortParam === "taskText"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.taskText > b.taskText) {return -1} else { return 1}});}
+		if(props.sortParam === "TaskText"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.taskText > b.taskText) {return -1} else { return 1}});}
 		if(props.sortParam === "Name"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});}
 		if(props.sortParam === "Email"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});}
-		if(props.sortParam === "Name"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.status > b.status) {return -1} else { return 1}});}
+		if(props.sortParam === "Status"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.status > b.status) {return -1} else { return 1}});}
 		const  	renderPersons=()=>{
 	  		return tasksForMap && tasksForMap.map((task, index)=>{
 		  			return(
@@ -39,7 +38,6 @@ const TasksList =(props)=> {
 		  	})		
 	  	}
 
-		console.log(props)
 	    return (
 	      	<div className={classes.TaskPersonsList}>
 	      	{props.sortParam}
@@ -56,7 +54,7 @@ const TasksList =(props)=> {
 								{renderPersons()}
 							</ul>
 					}
-				</div>
+				</div>			
 	      	</div>
 	    )
 }

@@ -58,7 +58,6 @@ class EditTask extends Component{
 	}
 
 	render(){
-		 	console.log( this.props);
 	    	return(			
 					<div className={classes.TaskWide}>
 						<div className={classes.Task}>

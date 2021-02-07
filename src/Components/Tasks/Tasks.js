@@ -14,7 +14,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 class Tasks extends Component{
 
 	componentDidMount(){
-	  		this.props.fetchTasks();
+	  	this.props.fetchTasks();
 	}
 	openCreateTask =(e)=>{
 		this.props.openCreateTask(e.target.id);
@@ -33,7 +33,6 @@ class Tasks extends Component{
 	}
 
 	render(){
-		 	console.log( this.props);
 		 	   	return (
       				<div>
 						<div className="container">
