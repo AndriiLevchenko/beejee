@@ -62,6 +62,7 @@ class EditTask extends Component{
 					<div className={classes.TaskWide}>
 						<div className={classes.Task}>
 						 	<h4>Edit Task</h4>	
+						 	{!this.props.authenticated && <h2>To edit task you need to authirize !</h2>	}
 						 	<span> 		id = {this.state.id}   </span>	
 						 	<Input 		
 				 				type="text"

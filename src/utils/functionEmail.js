@@ -14,7 +14,7 @@ export const functionEmail =(name) =>{
 		case "Ibragim":
 		return "ibribr883@ukr.net"
 		default:
-		return "phone number is absent"
+		return "email is absent"
 
 	}
 }

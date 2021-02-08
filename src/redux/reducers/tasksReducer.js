@@ -8,16 +8,18 @@ const FETCH_TASK_SUCCESS='FETCH_TASK_SUCCESS';
 
 const SORT_TASKS ='SORT_TASKS';
 const SORT_PARAM='SORT_PARAM';
+const CHANGE_PAGE_NUMBER='CHANGE_PAGE_NUMBER';
 
 const initialState={
+	tasksFull: [],
 	tasks: [], 
 	loading: false,
 	error: null,
 	pageLength: 3,
+	pagesQuantity: 1,
 	pageNumber: 1,
 	firstTask: 0,
-	lastTask: 2,
-	theRest: 0,
+	lastTask: 3,
 	sortParam: " "
 };
 
@@ -32,7 +34,9 @@ export default function  tasksReducer(state=initialState, action){
 			return {
 				...state,
 				loading: false,
-				tasks: action.tasks
+				tasksFull: action.tasks,
+				tasks: action.tasks.slice(state.firstTask, state.lastTask),
+				pagesQuantity: Math.ceil(action.tasks.length/state.pageLength)
 			}
 		case 'FETCH_TASK_SUCCESS':
 			return {
@@ -57,6 +61,14 @@ export default function  tasksReducer(state=initialState, action){
 					...state, 
 					sortParam: action.sortParam
 				}
+		case 'CHANGE_PAGE_NUMBER':
+				return{
+					...state,
+					pageNumber: action.payload.pageNumber,
+					firstTask: action.payload.firstTask,
+					lastTask: action.payload.lastTask,
+					tasks: state.tasksFull.slice(action.payload.firstTask, action.payload.lastTask)
+				}		
 		default:
 		return state
 	}						
@@ -129,22 +141,20 @@ export function sortParamFunction(sortParam){
 }
 
 export const sortTasks=(sortParam)=>(dispatch, getState)=>{
-	let tasks = getState().tasksReducer.tasks;
-	console.log("tasks = ", tasks);
 	let newTasks;
 	switch(sortParam){
 		case "TaskText":
-			newTasks = tasks.sort((a, b)=>{ if( a.taskText > b.taskText) {return -1} else { return 1}});
+			//newTasks = tasks.sort((a, b)=>{ if( a.taskText > b.taskText) {return -1} else { return 1}});
 				alert("sort by parameter  " + sortParam);
 			dispatch(sortParamFunction(sortParam));
 			break;
 		case "Name":
-			newTasks = tasks.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});
+			//newTasks = tasks.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});
 				alert("sort by parameter  " + sortParam);
 			dispatch(sortParamFunction(sortParam));
 			break;
 		case "Status":
-			newTasks = tasks.sort((a, b)=>{ if( a.status > b.status) {return -1} else { return 1}});
+			//newTasks = tasks.sort((a, b)=>{ if( a.status > b.status) {return -1} else { return 1}});
 				alert("sort by parameter  " + sortParam);
 			dispatch(sortParamFunction(sortParam));
 			break;
@@ -153,6 +163,18 @@ export const sortTasks=(sortParam)=>(dispatch, getState)=>{
 					newTasks
 			});
 	}		
+}
+
+export function changePageNumber(pageNumber){
+	let firstTask=(pageNumber - 1)*3;
+	let lastTask=pageNumber*3;
+	let payload={pageNumber,
+				 firstTask,
+				 lastTask
+				};
+	return {type: CHANGE_PAGE_NUMBER,
+			payload
+	}
 }
 
 

@@ -59,7 +59,7 @@ class CreateTask extends Component{
 						/>
 					 	
 					 	<div className={classes.Task__Button}>
-					 		<Button type='button' onClick={(event)=>this.createTask(event)} value="CREATE NEW TASK" />						 	
+					 		<Button type='button' onClick={(event)=>this.createTask(event)}  disabled={!this.props.authenticated} value="CREATE NEW TASK" />						 	
 						</div>
 					</div>
 			 	</div>
@@ -70,7 +70,8 @@ class CreateTask extends Component{
 
 function mapStateToProps(state){
 	return{
-		tasks: state.tasksReducer.tasks
+		tasks: state.tasksReducer.tasks,
+		authenticated: state.authReducer.token
 	}
 }
 function mapDispatchToProps(dispatch){

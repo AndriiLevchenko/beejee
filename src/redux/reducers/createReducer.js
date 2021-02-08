@@ -56,7 +56,6 @@ export function resetPersonEditing(){
 export function createTask(newPerson){
 	return  (dispatch)=>{
 		axios.post("https://abzagencytest.firebaseio.com/tasks.json", newPerson).then(response=>{
-			alert("New Task " + newPerson.name + " was created");
 			dispatch(resetPersonCreation());
 		}).catch(error=>console.log("error = ", error));
 		
