@@ -144,17 +144,14 @@ export const sortTasks=(sortParam)=>(dispatch, getState)=>{
 	let newTasks;
 	switch(sortParam){
 		case "TaskText":
-			//newTasks = tasks.sort((a, b)=>{ if( a.taskText > b.taskText) {return -1} else { return 1}});
 				alert("sort by parameter  " + sortParam);
 			dispatch(sortParamFunction(sortParam));
 			break;
 		case "Name":
-			//newTasks = tasks.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});
 				alert("sort by parameter  " + sortParam);
 			dispatch(sortParamFunction(sortParam));
 			break;
 		case "Status":
-			//newTasks = tasks.sort((a, b)=>{ if( a.status > b.status) {return -1} else { return 1}});
 				alert("sort by parameter  " + sortParam);
 			dispatch(sortParamFunction(sortParam));
 			break;

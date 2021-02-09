@@ -43,7 +43,7 @@ button[disabled]{
 @media (min-width: 615px) and (max-width: 1023px) {
  button{
 
-	height: 20px;
+	height: 32px;
 	padding: 3px;
 	font-size: 12px;
 	border-radius: 5px;
@@ -108,7 +108,7 @@ button[disabled]{
 	top: 0;
 	right: 0;
 	width: 130px;
-	height: 29px;
+	height: 33px;
 	margin: 8px 46px;
 	padding: 5px;
 	
