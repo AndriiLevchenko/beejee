@@ -29,7 +29,6 @@ class App extends Component {
             <Switch>
                 <Route path='/tasks' component={Tasks} />
                 <Route path='/tasks:id' component={EditTask} />
-                
                 <Route path='/' exact component={Tasks} />
                 <Route path='/logout' component={LogOut} />
                 <Redirect to='/' />

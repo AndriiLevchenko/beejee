@@ -70,7 +70,6 @@ class Auth extends Component{
 		Object.keys(formControls).forEach(name=>{
 			isFormValid=formControls[name].valid && isFormValid;
 		});
-		console.log(this.state.formControls.password.value);
 		this.setState({
 			formControls, 
 			isFormValid

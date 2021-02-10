@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import classes from './CreateTask.module.css';
+import fp from 'lodash/fp'
+import {withRouter} from 'react-router-dom';
 import Button from './../../UI/Button/Button';
 import Input from './../../UI/Input/Input';
 import {connect} from 'react-redux';
@@ -9,7 +11,7 @@ class EditTask extends Component{
 	state={
 		id: " ",
 		taskTextForEdit: " ",
-		raceForEdit: " ",
+		edited: false,
 		status: " ",
 		idTask: " "
 	}
@@ -29,6 +31,7 @@ class EditTask extends Component{
 	changeHandler =(value)=>{
 		this.setState({
 			taskTextForEdit: value,
+			edited: true
 		});
 	}
 	editTask = (event)=>{
@@ -39,13 +42,12 @@ class EditTask extends Component{
 			name: this.state.name,
 			idTask: this.state.idTask
 		}
-		this.props.editTask(editedTask);
-		this.setState({
-			taskTextForEdit: " ",
-			status: " ",
-			name: " ",
-			id: " "
-		});		
+		if (localStorage.getItem('token') || !this.state.edited){
+			this.props.editTask(editedTask);	
+		} else{
+			alert("To edit Task you need to authorize!");
+			this.props.history.push('/');
+		}	
 	}
 	deleteTask = (event)=>{
 		const deletedTaskId= this.state.id;
@@ -62,8 +64,7 @@ class EditTask extends Component{
 					<div className={classes.TaskWide}>
 						<div className={classes.Task}>
 						 	<h4>Edit Task</h4>	
-						 	{!this.props.authenticated && <h2>To edit task you need to authirize !</h2>	}
-						 	<span> 		id = {this.state.id}   </span>	
+						 	{!this.props.authenticated && <h2>To edit task you need to authorize !</h2>	}
 						 	<Input 		
 				 				type="text"
 				 				label="Edit Task " 
@@ -99,4 +100,5 @@ function mapDispatchToProps(dispatch){
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditTask);
+export default fp.flow(
+  withRouter, connect(mapStateToProps, mapDispatchToProps))(EditTask);
