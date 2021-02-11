@@ -34,7 +34,7 @@ class Tasks extends Component{
 								<Pagination count={this.props.pagesQuantity} page={this.props.pageNumber} color="primary" onChange={this.handleChange} />
 							</div>
 							<div className={classes.Task__Button}>					
-								<Button value="Create new Task" disabled={!this.props.authenticated}  onClick={this.openCreateTask} />	
+								<Button value="Create new Task"  onClick={this.openCreateTask} />	
 							</div>
 
 						</div>
