@@ -4,66 +4,121 @@ import Button from './../../UI/Button/Button';
 import Input from './../../UI/Input/Input';
 import {connect} from 'react-redux';
 import {createTask} from './../../redux/reducers/createReducer';
-import Select from './../../UI/Select/Select';
+import {validateEmail} from './../../utils/validateEmail';
 
 class CreateTask extends Component{
 	state={
-		taskText: " ",
-		Performer: "Aslan"
+		formControls:{
+			taskText:{
+				value: '',
+				type:'text',
+				label: 'Task Text',
+				errorMessage: "Enter task text",
+				valid: false,
+				touched: false,
+				validation:{
+					required: true,
+					minLength: 5
+				}
+			},
+			name:{
+				value: '',
+				type:'text',
+				label: ' performer\'s Name',
+				errorMessage: "Enter performer's name",
+				valid: false,
+				touched: false,
+				validation:{
+					required: true,
+					minLength: 5
+				}
+			},
+			email:{
+				value: ' ',
+				type:'email',
+				label: 'performer\'s E-mail',
+				errorMessage: "Enter perfomer's E-mail",
+				valid: false,
+				touched: false,
+				validation:{
+					required: true,
+					email: true
+				}
+			}
+		}
 	}
-	changeHandler =(value)=>{		
+	validateControl(value, validation){
+		if(!validation){
+			return true
+		}
+		let isValid=true;
+		if(validation.required){
+			isValid=value.trim() !=='' ? true : false;
+		}
+		if(validation.minLength){
+			isValid=value.length >= validation.minLength ? true : false;
+		}
+		if(validation.email){
+			isValid=validateEmail(value) ? true : false;
+		}
+		return isValid
+	}
+	onChangeHandler =(event, controlName)=>{
+		const formControls={...this.state.formControls};
+		const control={...formControls[controlName]};
+		control.value=event.target.value;
+		control.touched=true;
+		control.valid=this.validateControl(control.value, control.validation);
+		formControls[controlName]=control;
+		let isFormValid=true;
+		Object.keys(formControls).forEach(name=>{
+			isFormValid=formControls[name].valid  ? true : false;
+		});
 		this.setState({
-			taskText: value,
+			formControls, 
+			isFormValid
 		});
 	}
-	selectChangeHandler =(event)=>{
-		this.setState({
-			Performer: event.target.value
-		});
+	renderInputs(){
+		return Object.keys(this.state.formControls).map((controlName, index)=>{
+			const control=this.state.formControls[controlName];
+			return( <Input 
+						key={controlName + ' ' + index}
+						type={control.type}
+						value={control.value}
+						valid={control.valid}
+						touched={control.touched}
+						label={control.label}
+						errorMessage={control.errorMessage}
+						shouldValidate={!!control.validation}
+						onChange={(event)=>this.onChangeHandler(event, controlName)}
+				   />)
+		})
 	}
-	createTask = (event)=>{
+	submitHandler = (event)=>{
 		const newTask={
-			taskText: this.state.taskText,
+			taskText: this.state.formControls.taskText.value,
 			id: Date.now(),
 			status: false,
-			name: this.state.Performer
+			name: this.state.formControls.name.value,
+			email: this.state.formControls.email.value
 		}
 		this.props.createTask(newTask);
-		this.setState({
-			taskText: " ",
-			Performer: " "
-		});
 	}
 
 	render(){
-	    	return(		
-				<div className={classes.TaskWide}>
-					<div className={classes.Task}>
-					 	<h4>Create new Task</h4>						 
-					 	<Input 		label="Task" 
-					 				value={this.state.taskText}
-					 				onChange={event=>this.changeHandler(event.target.value)}
-					 	/>
-					 	<Select 
-							label='Performer'
-							value={this.state.Performer}
-							onChange={this.selectChangeHandler}
-							options={[
-								{text: "Aslan", value: "Aslan"},
-								{text: "Ibragim", value: "Ibragim"},
-								{text: "Salman", value: "Salman"},
-								{text: "Zelimkhan", value: "Zelimkhan"},
-								{text: "Movsar", value: "Movsar"},
-								{text: "newPerformer", value: "newPerformer"}
-							]}
-						/>
-					 	
+    	return(		
+			<div className={classes.TaskWide}>
+				<div className={classes.Task}>
+				 	<h4>Create new Task</h4>
+					 	{this.renderInputs()}
 					 	<div className={classes.Task__Button}>
-					 		<Button type='button' onClick={(event)=>this.createTask(event)}   value="CREATE NEW TASK" />						 	
+					 		<Button type='button' onClick={(event)=>this.submitHandler(event)}  value="CREATE NEW TASK" />						 	
 						</div>
-					</div>
-			 	</div>
-			)
+					
+				</div>
+		 	</div>
+		)
 	}
 }
 

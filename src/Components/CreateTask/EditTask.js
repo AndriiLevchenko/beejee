@@ -61,27 +61,27 @@ class EditTask extends Component{
 
 	render(){
 	    	return(			
-					<div className={classes.TaskWide}>
-						<div className={classes.Task}>
-						 	<h4>Edit Task</h4>	
-						 	{!this.props.authenticated && <h2>To edit task you need to authorize !</h2>	}
-						 	<Input 		
-				 				type="text"
-				 				label="Edit Task " 
-				 				value={this.state.taskTextForEdit}
-				 				onChange={event=>this.changeHandler(event.target.value)}
-				 				disabled={!this.props.authenticated}
-						 	/>
-						 	<input type='checkbox' checked={this.state.status}  onChange={()=>this.statusToggle()}/>
-						 	{this.state.status ? "The task is completed. " : "Complete task"}
-						 	<div className={classes.Task__Button}>
-						 		<Button type='button' onClick={(event)=>this.editTask(event)} value="SAVE CHANGED TASK" />
-						 	</div>	
-						 	<div className={classes.Task__Button}>
-						 		<Button type='button' disabled={!this.props.authenticated} onClick={(event)=>this.deleteTask(event)} value="DELETE TASK" />	
-						 	</div>						 	
-						</div>
-				 	</div>
+				<div className={classes.TaskWide}>
+					<div className={classes.Task}>
+					 	<h4>Edit Task</h4>	
+					 	{!this.props.authenticated && <h2>To edit task you need to authorize !</h2>	}
+					 	<Input 		
+			 				type="text"
+			 				label="Edit Task " 
+			 				value={this.state.taskTextForEdit}
+			 				onChange={event=>this.changeHandler(event.target.value)}
+			 				disabled={!this.props.authenticated}
+					 	/>
+					 	<input type='checkbox' checked={this.state.status}  onChange={()=>this.statusToggle()}/>
+					 	{this.state.status ? "The task is completed. " : "Complete task"}
+					 	<div className={classes.Task__Button}>
+					 		<Button type='button' onClick={(event)=>this.editTask(event)} value="SAVE CHANGED TASK" />
+					 	</div>	
+					 	<div className={classes.Task__Button}>
+					 		<Button type='button' disabled={!this.props.authenticated} onClick={(event)=>this.deleteTask(event)} value="DELETE TASK" />	
+					 	</div>						 	
+					</div>
+			 	</div>
 			)	
 	}
 }
@@ -100,5 +100,4 @@ function mapDispatchToProps(dispatch){
 	}
 }
 
-export default fp.flow(
-  withRouter, connect(mapStateToProps, mapDispatchToProps))(EditTask);
+export default fp.flow(withRouter, connect(mapStateToProps, mapDispatchToProps))(EditTask);

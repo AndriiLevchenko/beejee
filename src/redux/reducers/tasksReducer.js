@@ -8,6 +8,7 @@ const FETCH_TASK_SUCCESS='FETCH_TASK_SUCCESS';
 
 const SORT_TASKS ='SORT_TASKS';
 const SORT_PARAM='SORT_PARAM';
+const SORT_PARAM_PREVIOUS='SORT_PARAM_PREVIOUS';
 const CHANGE_PAGE_NUMBER='CHANGE_PAGE_NUMBER';
 
 const initialState={
@@ -20,7 +21,9 @@ const initialState={
 	pageNumber: 1,
 	firstTask: 0,
 	lastTask: 3,
-	sortParam: " "
+	sortParam: " ",
+	sortParamPrevious: " ",
+	sortReverse: false
 };
 
 export default function  tasksReducer(state=initialState, action){
@@ -57,10 +60,27 @@ export default function  tasksReducer(state=initialState, action){
 					tasks: action.newTasks
 				}
 		case 'SORT_PARAM':
+				if(action.sortParam === state.sortParam){
+					return{
+						...state, 
+						sortParam: action.sortParam,
+						sortParamPrevious: action.sortParam,
+						sortReverse: !state.sortReverse
+					}
+					} else {
+					return{
+						...state, 
+						sortParam: action.sortParam,
+						sortParamPrevious: action.sortParam,
+						sortReverse: false
+					}	
+				}
+
+		case 'SORT_PARAM_PREVIOUS':
 				return{
 					...state, 
-					sortParam: action.sortParam
-				}
+					sortParamPrevious: action.sortParamPrevious
+				}		
 		case 'CHANGE_PAGE_NUMBER':
 				return{
 					...state,
@@ -77,7 +97,6 @@ export default function  tasksReducer(state=initialState, action){
 export function resetPersonCreation(){
 	 window.location.reload();
 }
-
 export function fetchTasks(){
 	return async dispatch=>{
 		dispatch(fetchTasksStart());
@@ -137,6 +156,11 @@ export function fetchTasksError(error){
 export function sortParamFunction(sortParam){
 	return {type: SORT_PARAM,
 			sortParam
+		   }
+}
+export function sortParamPreviousFunction(sortParamPrevious){
+	return {type: SORT_PARAM_PREVIOUS,
+			sortParamPrevious
 		   }
 }
 

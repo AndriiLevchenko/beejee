@@ -26,8 +26,7 @@ class Tasks extends Component{
       				<div>
 						<div className="container">
 							<div className={classes.Task}>
-								<h1> Tasks  </h1>	
-								<h2>{"pageNumber = " + this.props.pageNumber + ", firstTask = " + this.props.firstTask + ",      lastTask = " + this.props.lastTask}</h2>							
+								<h1> Tasks  </h1>								
 								<TasksList />
 							</div>	
 							<div className={classes.pagination}>
@@ -36,7 +35,6 @@ class Tasks extends Component{
 							<div className={classes.Task__Button}>					
 								<Button value="Create new Task"  onClick={this.openCreateTask} />	
 							</div>
-
 						</div>
 						{this.props.isCreateTaskOpen && <section><CreateTask  isCreateTaskOpen ={this.props.isCreateTaskOpen}  /></section>}
 					</div>		

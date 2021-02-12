@@ -14,40 +14,54 @@ const TasksList =(props)=> {
 		}
 		const tasks=props.tasks;
 		let tasksForMap = tasks;
-		if(props.sortParam === "TaskText"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.taskText > b.taskText) {return -1} else { return 1}});}
-		if(props.sortParam === "Name"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});}
-		if(props.sortParam === "Email"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});}
-		if(props.sortParam === "Status"){tasksForMap = tasksForMap.sort((a, b)=>{ if( a.status > b.status) {return -1} else { return 1}});}
+		switch(props.sortParam){
+			case "TaskText":
+				tasksForMap.sort((a, b)=>{ if( a.taskText > b.taskText) {return -1} else { return 1}});
+				break;
+			case "Name":
+				tasksForMap.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});
+				break;
+			case "Email":
+				tasksForMap.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});
+				break;
+			case "Status":
+				tasksForMap.sort((a, b)=>{ if( a.name > b.name){ return -1} else{  return 1}});
+				break;
+			default:
+				tasksForMap = tasks
+	
+		}
+		tasksForMap = props.sortReverse ? tasksForMap.reverse() : tasksForMap;
 		const  	renderPersons=()=>{
 	  		return tasksForMap && tasksForMap.map((task, index)=>{
-		  			return(
-		  					<li
-		  						key={task.id} 
-		  					>
-		  						<NavLink to={'/tasks' + task.id }>
- 									<span className={classes.taskText}>{task.taskText}</span>  
- 									<span className={classes.performer}>{task.name}</span>  
- 									<span className={classes.email}>{functionEmail(task.name)}</span>   
- 									<span className={classes.status}>
- 										{task.status ? <CheckBoxIcon color="primary" /> : <CheckBoxOutlineBlankIcon color="disabled" />}
- 									</span>
-		  						</NavLink>	
-		  					</li>
-		  			)  	
+	  			return(
+  					<li
+  						key={task.id} 
+  					>
+  						<NavLink to={'/tasks' + task.id }>
+							<span className={classes.taskText}>{task.taskText}</span>  
+							<span className={classes.performer}>{task.name}</span>  
+							<span className={classes.email}>{task.email || functionEmail(task.name)}</span>   
+							<span className={classes.status}>
+								{task.status ? <CheckBoxIcon color="primary" /> : <CheckBoxOutlineBlankIcon color="disabled" />}
+							</span>
+  						</NavLink>	
+  					</li>
+	  			)  	
 		  		
 		  	})		
 	  	}
 
 	    return (
 	      	<div className={classes.TaskPersonsList}>
-	      	{props.sortParam}
+		      	{props.sortParam}
 	      		<div className={classes.Tests}>	
-	      						<div className={classes.Header}>
-	      							<button className={classes.taskText} onClick =  {()=>sortTasks("TaskText")}> Task     </button>  
- 									<button className={classes.performer} onClick = {()=>sortTasks("Name")}>         Performer</button>  
- 									<button className={classes.email} onClick =     {()=>sortTasks("Name")}>        E-mail   </button>   
- 									<button className={classes.status} onClick =    {()=>sortTasks("Status")}>     Status   </button>
- 								</div>
+					<div className={classes.Header}>
+						<button className={classes.taskText} onClick =  {()=>sortTasks("TaskText")}> Task     </button>  
+						<button className={classes.performer} onClick = {()=>sortTasks("Name")}>         Performer</button>  
+						<button className={classes.email} onClick =     {()=>sortTasks("Name")}>        E-mail   </button>   
+						<button className={classes.status} onClick =    {()=>sortTasks("Status")}>     Status   </button>
+					</div>
 					{ props.loading && props.tasks.length !== 0
 						? <Loader />
 						:	<ul>
@@ -63,14 +77,15 @@ function mapStateToProps(state){
 	return{
 		tasks: state.tasksReducer.tasks,
 		loading: state.tasksReducer.loading,
-		sortParam: state.tasksReducer.sortParam
+		sortParam: state.tasksReducer.sortParam,
+		sortParamPrevious: state.tasksReducer.sortParamPrevious,
+		sortReverse: state.tasksReducer.sortReverse
 	}
 }
 function mapDispatchToProps(dispatch){
 	return{
 		fetchTasks: ()=>dispatch(fetchTasks()),
 		sortTasks: (sortParam)=>dispatch(sortTasks(sortParam))
-		
 	}
 }
 
