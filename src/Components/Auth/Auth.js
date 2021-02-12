@@ -1,5 +1,3 @@
-//import {loginUser, logoutUser} from './redux/authReducer';
-
 import React, {Component} from 'react';
 import classes from './Auth.module.css';
 import Button from './../../UI/Button/Button';
@@ -15,7 +13,7 @@ class Auth extends Component{
 				value: ' ',
 				type:'email',
 				label: 'Login',
-				errorMessage: "Введіть вірний E-mail",
+				errorMessage: "incorrect Login",
 				valid: false,
 				touched: false,
 				validation:{
@@ -27,7 +25,7 @@ class Auth extends Component{
 				value: '',
 				type:'password',
 				label: 'Password',
-				errorMessage: "Введіть вірний пароль",
+				errorMessage: "incorrect Password",
 				valid: false,
 				touched: false,
 				validation:{

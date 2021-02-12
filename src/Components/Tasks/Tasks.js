@@ -4,7 +4,6 @@ import Button from './../../UI/Button/Button';
 import {connect} from 'react-redux';
 import {openCreateTask} from './../../redux/reducers/createReducer';
 import {fetchTasks, changePageNumber} from './../../redux/reducers/tasksReducer';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import TasksList from './../TasksList/TasksList';
 import CreateTask from "./../CreateTask/CreateTask";
 import Pagination from '@material-ui/lab/Pagination';

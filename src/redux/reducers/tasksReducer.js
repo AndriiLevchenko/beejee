@@ -60,21 +60,21 @@ export default function  tasksReducer(state=initialState, action){
 					tasks: action.newTasks
 				}
 		case 'SORT_PARAM':
-				if(action.sortParam === state.sortParam){
-					return{
-						...state, 
-						sortParam: action.sortParam,
-						sortParamPrevious: action.sortParam,
-						sortReverse: !state.sortReverse
-					}
-					} else {
-					return{
-						...state, 
-						sortParam: action.sortParam,
-						sortParamPrevious: action.sortParam,
-						sortReverse: false
-					}	
+			if(action.sortParam === state.sortParam){
+				return{
+					...state, 
+					sortParam: action.sortParam,
+					sortParamPrevious: action.sortParam,
+					sortReverse: !state.sortReverse
 				}
+				} else {
+				return{
+					...state, 
+					sortParam: action.sortParam,
+					sortParamPrevious: action.sortParam,
+					sortReverse: false
+				}	
+			}
 
 		case 'SORT_PARAM_PREVIOUS':
 				return{
@@ -163,20 +163,16 @@ export function sortParamPreviousFunction(sortParamPrevious){
 			sortParamPrevious
 		   }
 }
-
 export const sortTasks=(sortParam)=>(dispatch, getState)=>{
 	let newTasks;
 	switch(sortParam){
 		case "TaskText":
-				alert("sort by parameter  " + sortParam);
 			dispatch(sortParamFunction(sortParam));
 			break;
 		case "Name":
-				alert("sort by parameter  " + sortParam);
 			dispatch(sortParamFunction(sortParam));
 			break;
 		case "Status":
-				alert("sort by parameter  " + sortParam);
 			dispatch(sortParamFunction(sortParam));
 			break;
 		default:
