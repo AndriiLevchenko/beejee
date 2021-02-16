@@ -25,7 +25,8 @@ class EditTask extends Component{
 			id: this.props.match.params.id,
 			taskTextForEdit,
 			status: this.props.tasks[indexTask].status,
-			name: this.props.tasks[indexTask].name
+			name: this.props.tasks[indexTask].name,
+			email: this.props.tasks[indexTask].email || "e-mail is absent"
 		})
 	}
 	changeHandler =(value)=>{
@@ -40,7 +41,8 @@ class EditTask extends Component{
 			id: this.state.id,
 			status: this.state.status,
 			name: this.state.name,
-			idTask: this.state.idTask
+			idTask: this.state.idTask,
+			email: this.state.email
 		}
 		if (localStorage.getItem('token') || !this.state.edited){
 			this.props.editTask(editedTask);	
