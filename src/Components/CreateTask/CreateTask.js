@@ -113,7 +113,12 @@ class CreateTask extends Component{
 				 	<h4>Create new Task</h4>
 					 	{this.renderInputs()}
 					 	<div className={classes.Task__Button}>
-					 		<Button type='button' onClick={(event)=>this.submitHandler(event)}  value="CREATE NEW TASK" />						 	
+					 		<Button 
+					 			type='button' 
+					 			disabled={!(this.state.formControls.taskText.valid && this.state.formControls.name.valid && this.state.formControls.email.valid)} 
+					 			onClick={(event)=>this.submitHandler(event)}  
+					 			value="CREATE NEW TASK" 
+					 		/>						 	
 						</div>
 					
 				</div>
